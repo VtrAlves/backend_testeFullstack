@@ -1,9 +1,9 @@
 const express = require('express')
-const {Users} = require('./models')
 
 const app = express()
 
 app.use(express.urlencoded({ extended : false }))
+app.use(require('./routes'))
 
 async function crt(){
 	return await Users.create({
@@ -13,10 +13,6 @@ async function crt(){
 	})
 }
 
-app.get('/', (req,res) => {
-	crt()
-	return res.send('Hello World!')
-})
 
 app.listen(3333, function() {
 	console.log("Server is running")
